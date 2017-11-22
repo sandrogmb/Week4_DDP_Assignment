@@ -1,0 +1,30 @@
+---
+title: "Documentation.Week4.ass.DDP"
+author: "sandro"
+date: "22/11/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##In this github repository you can find:
+- documentation file
+- shiny app assignment of week 4 DDP 
+- r presentation of week 4 DDP
+- datasets needed to shiny app and presentation
+
+##Documentation file:
+My shiny app and presentation are build to find genetinc mutations and their clinical classifications
+present in breast cancer.
+
+To obtain this results we have the first file "PAM50_proteins.csv" from which we obatin the name of the genes that are mutated in breast cancer. We have the second file "training_variants" where a number of genes with their different different mutations and theis clinical classifications are present in different kind of cancers. 
+
+Through our shiny app and presentation, we obtain the genes from the dataset of breast cancer and we we search in the other dataset, which mutations and corresponding clinical classification are present in these genes.
+
+We use these two datasets in this way only to complete the DDP assignment not for particular research.
+
+The two files are obtained from the two sites of kaggle.com:
+https://www.kaggle.com/c/msk-redefining-cancer-treatment/data
+https://www.kaggle.com/piotrgrabo/breastcancerproteomes/data

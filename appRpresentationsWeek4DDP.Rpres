@@ -1,0 +1,55 @@
+appRpresentationsWeek4DDP
+========================================================
+author: Sandro
+date: 18/11/2017
+autosize: true
+
+
+"Title: Genetic mutations in breast cancer"
+
+
+========================================================
+This dataset presents a list of genes and corresponding proteins expressed in breast cancer.  
+The column RefSeqProteinID contains the protein IDs.
+```{r, echo=FALSE}
+proteome<-read.csv("PAM50_proteins.csv")
+names(proteome)[1]<-"Gene"
+library(dplyr)
+proteome<-select(proteome, "Gene", "RefSeqProteinID", "Species")
+head(proteome)
+```
+
+========================================================
+In this dataset, we find which mutations are present more frequently in different kinds of cancers.
+```{r, echo=FALSE}
+train_var<-read.csv("training_variants")
+train_var<-mutate(train_var, Class=as.factor(Class))
+head(train_var)
+```
+
+
+========================================================
+This table identifies which breast cancer genes are present in the  
+dataset of genes and mutations in different kinds of cancers.
+```{r, echo=FALSE}
+a1<-levels(proteome$Gene)
+b1<-levels(train_var$Gene)
+c1<-(match(levels(proteome$Gene), levels(train_var$Gene)))
+matchingGenes<-as.data.frame(b1[c1])
+matchingGenes<-na.omit(matchingGenes)
+names(matchingGenes)<-"Gene"
+head(matchingGenes, 9)
+```
+
+========================================================
+Now, for each of the previous genes, we can obtain the most frequently associated mutations and their clinical classification in a scale between 1 and 9.  
+  
+For example, gene MYC
+```{r, echo=FALSE}
+A<-train_var%>%filter(train_var$Gene == as.vector(matchingGenes$Gene)[9])%>%select(Variation)
+B<-train_var%>%filter(train_var$Gene == as.vector(matchingGenes$Gene)[9])%>%select(Class)
+print(paste("Gene", as.vector(matchingGenes$Gene)[9]))
+c<-cbind(A,B)
+c
+
+```
